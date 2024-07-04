@@ -1,20 +1,18 @@
-const fs = require('fs')
+const fs = require('fs').promises
 
-const filePath = 'example.txt'
+async function readAndWriteFile() {
+    try {
+        const data = await fs.readFile('example.txt', 'utf-8')
+        console.log('file content:', data)
 
-fs.readFile(filePath, 'utf-8', (err, content) => {
-    if(err) {
+        const newData = data.toUpperCase()
+        await fs.writeFile('example.txt', newData)
+        console.log('file has been writen');
+    } catch (err) {
         console.log(err)
-        return
+    } finally {
+        console.log('done')
     }
-    console.log(content)
-})
+}
 
-const content = 'hello xin chao tat ca cac ban'
-
-fs.writeFile(filePath, content, err => {
-    if(err) {
-        console.log(err)
-    }
-    console.log('done')
-})
+readAndWriteFile()

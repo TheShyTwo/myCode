@@ -7,7 +7,7 @@ function serveFile(filePath, contentType, res) {
     fs.readFile(filePath, (err, content) => {
         if (err) {
             res.writeHead(500, {'Content-Type': 'text/plain'})
-            res.end(content,'utf-8')
+            res.end(content, 'utf-8')
         } else {
             res.writeHead(200, {'Content-Type': contentType})
             res.end(content, 'utf-8')
